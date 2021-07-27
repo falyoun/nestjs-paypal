@@ -18,7 +18,7 @@ async function bootstrap() {
 
   await app.listen(PORT, () =>
     console.log(
-      `Lamar server is listening on port ${PORT}`,
+      `Server is listening on port ${PORT}`,
     ),
   );
 }

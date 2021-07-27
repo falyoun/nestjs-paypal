@@ -21,6 +21,7 @@
     "strictNullChecks": false,
     "suppressImplicitAnyIndexErrors": true,
     "allowSyntheticDefaultImports": true,
+    "allowJs": true,
     "strict": true,
     "experimentalDecorators": true,
     "baseUrl": "./",
