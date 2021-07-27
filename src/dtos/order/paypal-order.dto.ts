@@ -6,6 +6,9 @@
 * */
 
 import { Matches } from 'class-validator';
+import { PaymentSourceResponseDto } from "@app/dtos/payment-source-response.dto";
+import { PaypalLinkDescriptionDto, PaypalPayerDto, PurchaseUnitRequestDto } from "@app/dtos";
+import { PaypalOrderStatusDto } from "@app/dtos/order/paypal-order-status.dto";
 
 export class PaypalOrderDto {
 
@@ -19,5 +22,16 @@ export class PaypalOrderDto {
   id: string;
 
   // The payment source used to fund the payment.
-  payment_source: any;
+  payment_source: PaymentSourceResponseDto;
+
+
+  intent: 'CAPTURE' | 'AUTHORIZE';
+
+  payer: PaypalPayerDto;
+
+  purchase_units: PurchaseUnitRequestDto[];
+
+  status: PaypalOrderStatusDto;
+
+  links: PaypalLinkDescriptionDto[];
 }
