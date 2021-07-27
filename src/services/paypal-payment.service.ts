@@ -8,8 +8,9 @@ import { AxiosInstance } from 'axios';
 import { PaypalModuleOptions } from '@app/interfaces';;
 import { PaypalUtilsService, PaypalAuthorizationService } from '@app/services';
 import { PaypalErrorsConstants } from '@app/errors';
-import { PaypalOrderDto, InitiateOrderHeadersDto, CreatePaypalOrderDto } from '@app/dtos';
+import { PaypalOrderDto, InitiateOrderHeadersDto, CreatePaypalOrderDto, AuthorizeOrderHeadersDto } from "@app/dtos";
 import { UpdatePaypalOrderDto } from "@app/dtos/order/update-paypal-order.dto";
+import { PaymentSourceResponseDto } from "@app/dtos/payment-source-response.dto";
 
 @Injectable()
 export class PaypalPaymentService {
@@ -94,5 +95,36 @@ export class PaypalPaymentService {
         nativeError: e?.response?.data || e
       }
     })
+  }
+
+  async authorizePaymentForOrder(orderId: string, payload: PaymentSourceResponseDto, headers?: AuthorizeOrderHeadersDto): Promise<PaypalOrderDto> {
+    const _headers = await this._preparePaypalRequestHeaders(headers);
+    const apiUrl = this.paypalUtilsService.getApiUrl(this.options.environment);
+
+    return this.axiosInstance.post(`${apiUrl}/v2/checkout/orders/${orderId}/authorize`, payload, {
+      headers: _headers
+    })
+      .then(r => r.data)
+      .catch(e => {
+        throw {
+          ...PaypalErrorsConstants.AUTHORIZE_ORDER_FAILED,
+          nativeError: e?.response?.data || e
+        }
+      })
+  }
+
+  async capturePaymentForOrder(orderId: string, payload: PaymentSourceResponseDto, headers?: AuthorizeOrderHeadersDto): Promise<PaypalOrderDto> {
+    const _headers = await this._preparePaypalRequestHeaders(headers);
+    const apiUrl = this.paypalUtilsService.getApiUrl(this.options.environment);
+    return this.axiosInstance.post(`${apiUrl}/v2/checkout/orders/${orderId}/capture`, payload, {
+      headers: _headers
+    })
+      .then(r => r.data)
+      .catch(e => {
+        throw {
+          ...PaypalErrorsConstants.CAPTURE_ORDER_FAILED,
+          nativeError: e?.response?.data || e
+        }
+      })
   }
 }

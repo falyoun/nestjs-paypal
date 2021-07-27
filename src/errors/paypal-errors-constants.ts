@@ -17,6 +17,14 @@ export const PaypalErrorsConstants = {
     code: "get_order_failed",
     message: 'Could not get order'
   },
+  "AUTHORIZE_ORDER_FAILED": {
+    code: "authorize_order_failed",
+    message: 'Could not authorize order'
+  },
+  "CAPTURE_ORDER_FAILED": {
+    code: "capture_order_failed",
+    message: 'Could not capture order'
+  },
   "ADD_CARD_INFORMATION_FAILED": {
     code: "add_card_information_failed",
     message: 'Could not supply your card, kindly check if you entered correct information'
