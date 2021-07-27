@@ -70,4 +70,29 @@ export class PaypalPaymentService {
       }
     })
   }
+
+
+  async getOrderDetails(orderId: string): Promise<PaypalOrderDto> {
+    const headers = await this._preparePaypalRequestHeaders();
+    const apiUrl = this.paypalUtilsService.getApiUrl(this.options.environment);
+    return this.axiosInstance.get(
+      `${apiUrl}/v2/checkout/orders/${orderId}`,
+      {
+        headers
+      }
+    ).then(r => {
+      if(r.status === 200) {
+        return r.data;
+      }
+      throw {
+        message: 'Un-expected error',
+        data: r.data
+      }
+    }).catch(e => {
+      throw {
+        ...PaypalErrorsConstants.GET_ORDER_FAILED,
+        nativeError: e?.response?.data || e
+      }
+    })
+  }
 }

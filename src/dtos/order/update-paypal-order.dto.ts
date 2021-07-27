@@ -1,12 +1,10 @@
-import { IsArray, IsEnum, IsNotEmpty, IsOptional } from "class-validator";
+import { IsArray, IsNotEmpty, IsOptional } from "class-validator";
 import { PaypalOperationDto, PaypalPayerDto, PurchaseUnitRequestDto } from "@app/dtos";
-import { PaypalOrderIntentDto } from "@app/dtos/order/paypal-order-intent.dto";
 
 export class AllowedValueToPatchOrderDto {
 
   @IsOptional()
-  @IsEnum(PaypalOrderIntentDto)
-  intent?: PaypalOrderIntentDto;
+  intent?: 'CAPTURE' | 'AUTHORIZE';
 
 
   @IsOptional()
@@ -19,7 +17,6 @@ export class AllowedValueToPatchOrderDto {
 export class UpdatePaypalOrderDto {
 
   @IsNotEmpty()
-  @IsEnum(PaypalOperationDto)
   op: PaypalOperationDto;
 
   @IsOptional()

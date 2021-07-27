@@ -1,5 +1,4 @@
 import { PaypalPayerDto, PurchaseUnitRequestDto, PaypalApplicationContextDto } from '@app/dtos';
-import { PaypalOrderIntentDto } from "@app/dtos/order/paypal-order-intent.dto";
 
 
 export class CreatePaypalOrderDto {
@@ -11,7 +10,7 @@ export class CreatePaypalOrderDto {
   // After the three-day honor period, the original authorized payment expires and you must re-authorize the payment.
   // You must make a separate request to capture payments on demand.
   // This intent is not supported when you have more than one `purchase_unit` within your order.
-  intent?: PaypalOrderIntentDto;
+  intent?: 'CAPTURE' | 'AUTHORIZE';
 
   // The customer who approves and pays for the order. The customer is also known as the payer.
   payer?: PaypalPayerDto;

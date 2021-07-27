@@ -13,6 +13,10 @@ export const PaypalErrorsConstants = {
     code: "update_order_failed",
     message: 'Could not update order'
   },
+  "GET_ORDER_FAILED": {
+    code: "get_order_failed",
+    message: 'Could not get order'
+  },
   "ADD_CARD_INFORMATION_FAILED": {
     code: "add_card_information_failed",
     message: 'Could not supply your card, kindly check if you entered correct information'

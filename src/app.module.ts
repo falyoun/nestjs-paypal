@@ -1,7 +1,10 @@
-import { Module } from "@nestjs/common";
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import configurations from './configurations';
+import { Module, OnModuleInit } from "@nestjs/common";
+import { ConfigModule, ConfigService } from "@nestjs/config";
+import configurations from "./configurations";
 import { PaypalPaymentModule } from "@app/paypal-payment.module";
+import { InjectScandiniaviaPaypal } from "@app/decorators";
+import { PaypalPaymentService } from "@app/services";
+import { CreatePaypalOrderDto } from "@app/dtos";
 
 @Module({
   imports: [
@@ -25,6 +28,54 @@ import { PaypalPaymentModule } from "@app/paypal-payment.module";
     }),
   ],
 })
-export class AppModule {
+export class AppModule implements OnModuleInit {
 
+  constructor(@InjectScandiniaviaPaypal() private paymentService: PaypalPaymentService) {
+  }
+  onModuleInit(): any {
+    const order: CreatePaypalOrderDto = {
+      intent: 'CAPTURE',
+      purchase_units: [
+        {
+          amount: {
+            "currency_code": "USD",
+            "value": "100.00"
+          },
+          reference_id: 'monitor'
+        }
+      ]
+    };
+    this.paymentService.initiateOrder(order, {
+      Prefer: 'return=representation'
+    }).then(r => {
+      console.log(r);
+      console.log('Refe: ', r.purchase_units[0].reference_id);
+      return this.paymentService.updateOrder(r.id, [
+        {
+          op: 'add',
+          path: `/purchase_units/@reference_id=='${r.purchase_units[0].reference_id}'/shipping/address`,
+          value: {
+            "address_line_1": "123 Townsend St",
+            "address_line_2": "Floor 6",
+            "admin_area_2": "San Francisco",
+            "admin_area_1": "CA",
+            "postal_code": "94107",
+            "country_code": "US"
+          }
+        }
+      ]);
+    })
+      .then(r => {
+        console.log('update: ', r);
+        return this.paymentService.getOrderDetails(r.id)
+      })
+      .then(r => {
+        console.log('r: ', r);
+      })
+      .catch(e => {
+        console.log(e.nativeError)
+      });
+
+    
+  }
 }
