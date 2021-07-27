@@ -9,6 +9,7 @@ import { PaypalModuleOptions } from '@app/interfaces';;
 import { PaypalUtilsService, PaypalAuthorizationService } from '@app/services';
 import { PaypalErrorsConstants } from '@app/errors';
 import { PaypalOrderDto, InitiateOrderHeadersDto, CreatePaypalOrderDto } from '@app/dtos';
+import { UpdatePaypalOrderDto } from "@app/dtos/order/update-paypal-order.dto";
 
 @Injectable()
 export class PaypalPaymentService {
@@ -24,16 +25,18 @@ export class PaypalPaymentService {
   }
 
 
-
-  async initiateOrder(orderPayload: CreatePaypalOrderDto, headers?: InitiateOrderHeadersDto): Promise<PaypalOrderDto> {
-
+  async _preparePaypalRequestHeaders(customHeaders?: any) {
     const initiateTokenResponse = await this.paypalAuthorizationService.getAccessToken();
     const { access_token } = initiateTokenResponse;
-    const _headers = {
+    return {
       'Content-Type': 'application/json',
       'Authorization': access_token ? `Bearer ${access_token}` : `Basic ${this.paypalAuthorizationService.getBasicKey()}`,
-      ...headers
+      ...customHeaders
     };
+  }
+
+  async initiateOrder(orderPayload: CreatePaypalOrderDto, headers?: InitiateOrderHeadersDto): Promise<PaypalOrderDto> {
+    const _headers = await this._preparePaypalRequestHeaders(headers);
     const apiUrl = this.paypalUtilsService.getApiUrl(this.options.environment);
     return this.axiosInstance.post(`${apiUrl}/v2/checkout/orders`, orderPayload, {
       headers: _headers
@@ -45,5 +48,26 @@ export class PaypalPaymentService {
           nativeError: e?.response?.data || e
         }
       });
+  }
+
+
+  async updateOrder(orderId: string, updateOrderDto: UpdatePaypalOrderDto[]) {
+    const _headers = await this._preparePaypalRequestHeaders();
+    const apiUrl = this.paypalUtilsService.getApiUrl(this.options.environment);
+    return this.axiosInstance.patch(`${apiUrl}/v2/checkout/orders/${orderId}`, updateOrderDto, {
+      headers: _headers
+    }).then(r => {
+      if(r.status === 204) {
+        return {
+          message: `Order updated successfully.!`
+        }
+      }
+      return r.data;
+    }).catch(e => {
+      throw {
+        ...PaypalErrorsConstants.UPDATE_ORDER_FAILED,
+        nativeError: e?.response?.data || e
+      }
+    })
   }
 }

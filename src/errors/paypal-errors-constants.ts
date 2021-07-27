@@ -9,6 +9,10 @@ export const PaypalErrorsConstants = {
     code: "initiate_order_failed",
     message: 'Could not initiate order'
   },
+  "UPDATE_ORDER_FAILED": {
+    code: "update_order_failed",
+    message: 'Could not update order'
+  },
   "ADD_CARD_INFORMATION_FAILED": {
     code: "add_card_information_failed",
     message: 'Could not supply your card, kindly check if you entered correct information'
