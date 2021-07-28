@@ -14,9 +14,9 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      PAYPAL_CLIENT_ID: ${payment-secrets.PAYPAL_CLIENT_ID}
-      PAYPAL_CLIENT_SECRET: ${payment-secrets.PAYPAL_CLIENT_SECRET}
-      PAYPAL_ENVIRONMENT:  ${payment-secrets.PAYPAL_ENVIRONMENT}
+      PAYPAL_CLIENT_ID: ${secrets.PAYPAL_CLIENT_ID}
+      PAYPAL_CLIENT_SECRET: ${secrets.PAYPAL_CLIENT_SECRET}
+      PAYPAL_ENVIRONMENT:  ${secrets.PAYPAL_ENVIRONMENT}
     strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
