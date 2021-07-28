@@ -52,7 +52,7 @@ export class PaypalPaymentService {
   }
 
 
-  async updateOrder(orderId: string, updateOrderDto: UpdatePaypalOrderDto[]) {
+  async updateOrder(orderId: string, updateOrderDto: UpdatePaypalOrderDto[]): Promise<{ message: string }> {
     const _headers = await this._preparePaypalRequestHeaders();
     const apiUrl = this.paypalUtilsService.getApiUrl(this.options.environment);
     return this.axiosInstance.patch(`${apiUrl}/v2/checkout/orders/${orderId}`, updateOrderDto, {

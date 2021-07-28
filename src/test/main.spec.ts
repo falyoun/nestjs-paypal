@@ -56,4 +56,36 @@ describe("Suitcase to test PayPal integration methods", () => {
     expect(order.id).toBeDefined();
     expect(order).not.toBe(null);
   });
+
+
+  it('Fetch order details by id', async() => {
+    const mockId = '7HN19922NV501452W';
+    const order = await spyService.getOrderDetails(mockId);
+
+    expect(order).not.toBe(null);
+    expect(order.id).toBeDefined();
+
+  });
+
+
+  it("Update order", async () => {
+    const mockId = '7HN19922NV501452W';
+    const order = await spyService.getOrderDetails(mockId);
+    const updateResponse = await spyService.updateOrder(order.id,
+      [
+        {
+          op: 'add',
+          path: `/purchase_units/@reference_id=='${order.purchase_units[0].reference_id}'/shipping/address`,
+          value: {
+            "address_line_1": "123 Townsend St",
+            "address_line_2": "Floor 6",
+            "admin_area_2": "San Francisco",
+            "admin_area_1": "CA",
+            "postal_code": "94107",
+            "country_code": "US"
+          }
+        }
+      ]);
+    expect(updateResponse.message).toBeDefined();
+  });
 });
