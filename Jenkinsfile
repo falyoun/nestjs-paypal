@@ -25,13 +25,13 @@ pipeline {
     // Runs after all stages
     post {
         success {
-            mail(from: "abdulrahman-falyoun@outlook.com",
+            mail(from: "abd.fl.19999@gmail.com",
                        to: "falyoun.abdulrahman@gmail.com",
                        subject: "That build passed.",
                        body: "Nothing to see here")
         }
         failure {
-            mail(from: "abdulrahman-falyoun@outlook.com",
+            mail(from: "abd.fl.19999@gmail.com",
                    to: "falyoun.abdulrahman@gmail.com",
                    subject: "That build failed!",
                    body: "Nothing to see here")
