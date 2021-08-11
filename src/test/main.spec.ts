@@ -59,8 +59,25 @@ describe("Suitcase to test PayPal integration methods", () => {
 
 
   it('Fetch order details by id', async() => {
-    const mockId = '7HN19922NV501452W';
-    const order = await spyService.getOrderDetails(mockId);
+
+    const payload: CreatePaypalOrderDto = {
+      intent: "CAPTURE",
+      purchase_units: [
+        {
+          amount: {
+            "currency_code": "USD",
+            "value": "100.00"
+          },
+          reference_id: "monitor"
+        }
+      ]
+    };
+
+    const createdOrder = await spyService.initiateOrder(payload, {
+      Prefer: "return=representation"
+    });
+
+    const order = await spyService.getOrderDetails(createdOrder.id);
 
     expect(order).not.toBe(null);
     expect(order.id).toBeDefined();
@@ -69,8 +86,22 @@ describe("Suitcase to test PayPal integration methods", () => {
 
 
   it("Update order", async () => {
-    const mockId = '7HN19922NV501452W';
-    const order = await spyService.getOrderDetails(mockId);
+    const payload: CreatePaypalOrderDto = {
+      intent: "CAPTURE",
+      purchase_units: [
+        {
+          amount: {
+            "currency_code": "USD",
+            "value": "100.00"
+          },
+          reference_id: "monitor"
+        }
+      ]
+    };
+
+    const order = await spyService.initiateOrder(payload, {
+      Prefer: "return=representation"
+    });
     const updateResponse = await spyService.updateOrder(order.id,
       [
         {
