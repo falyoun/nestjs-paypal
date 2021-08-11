@@ -27,11 +27,8 @@ pipeline {
         always {
             // Always will get executed, fail, pass or whatever
             // Like sending an email
-            echo "Always will run"
         }
         failure {
-            //
-            echo "Failure"
         }
     }
 
