@@ -1,7 +1,7 @@
-import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
-import configurations from "./configurations";
 import { PaypalPaymentModule } from "@app/paypal-payment.module";
+import { Module } from "@nestjs/common";
+import configurations from "@app/configurations";
 
 @Module({
   imports: [
