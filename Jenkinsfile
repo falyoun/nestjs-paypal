@@ -39,7 +39,6 @@ pipeline {
                    to: "falyoun.abdulrahman@gmail.com",
                    subject: "That build failed!",
                    body: "Nothing to see here")
-            }
         }
     }
 
