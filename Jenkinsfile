@@ -25,11 +25,33 @@ pipeline {
     // Runs after all stages
     post {
         always {
-            // Always will get executed, fail, pass or whatever
-            // Like sending an email
+            // Let's wipe out the workspace before we finish!
+            deleteDir()
+        }
+        success {
+            mail(from: "lynx-falyoun@gmail.com",
+                       to: "falyoun.abdulrahman@gmail.com",
+                       subject: "That build passed.",
+                       body: "Nothing to see here")
         }
         failure {
+            mail(from: "lynx-falyoun@gmail.com",
+                   to: "falyoun.abdulrahman@gmail.com",
+                   subject: "That build failed!",
+                   body: "Nothing to see here")
+            }
         }
+    }
+
+    // The options directive is for configuration that applies to the whole job.
+    options {
+        // For example, we'd like to make sure we only keep 10 builds at a time, so
+        // we don't fill up our storage!
+        buildDiscarder(logRotator(numToKeepStr:'10'))
+
+        // And we'd really like to be sure that this build doesn't hang forever, so
+        // let's time it out after an hour.
+        timeout(time: 60, unit: 'MINUTES')
     }
 
 }
