@@ -22,25 +22,6 @@ pipeline {
         }
 
     }
-    // Runs after all stages
-    post {
-        always {
-            // Let's wipe out the workspace before we finish!
-            deleteDir()
-        }
-        success {
-            mail(from: "lynx-falyoun@gmail.com",
-                       to: "falyoun.abdulrahman@gmail.com",
-                       subject: "That build passed.",
-                       body: "Nothing to see here")
-        }
-        failure {
-            mail(from: "lynx-falyoun@gmail.com",
-                   to: "falyoun.abdulrahman@gmail.com",
-                   subject: "That build failed!",
-                   body: "Nothing to see here")
-        }
-    }
 
     // The options directive is for configuration that applies to the whole job.
     options {
