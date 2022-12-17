@@ -1,8 +1,6 @@
-
-
 export enum CardsTypesEnumDto {
   CREDIT,
   DEBIT,
   PREPAID,
-  UNKNOWN
+  UNKNOWN,
 }

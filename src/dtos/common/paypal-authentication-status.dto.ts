@@ -1,5 +1,3 @@
-
-
 export enum PaypalAuthenticationStatusDto {
   // The possible values are:
   //
@@ -18,5 +16,5 @@ export enum PaypalAuthenticationStatusDto {
   'C',
   'R',
   'D',
-  'I'
+  'I',
 }

@@ -1,6 +1,5 @@
 import { IsNotEmpty, Length, MaxLength } from 'class-validator';
 
-
 export class PaypalMoneyDto {
   // The three-character ISO-4217 currency code that identifies the currency.
   @IsNotEmpty()

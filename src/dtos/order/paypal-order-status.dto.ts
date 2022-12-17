@@ -1,6 +1,4 @@
-
-
-export type PaypalOrderStatusDto = 
+export type PaypalOrderStatusDto =
   // The possible values are:
   //
   // CREATED. The order was created with the specified context.
@@ -9,9 +7,9 @@ export type PaypalOrderStatusDto =
   // VOIDED. All purchase units in the order are voided.
   // COMPLETED. The payment was authorized or the authorized payment was captured for the order.
   // PAYER_ACTION_REQUIRED. The order requires an action from the payer (e.g. 3DS authentication). Redirect the payer to the "rel":"payer-action" HATEOAS link returned as part of the response prior to authorizing or capturing the order.
-  'CREATED'|
-  'SAVED'|
-  'APPROVED'|
-  'VOIDED'|
-  'COMPLETED' |
-  'PAYER_ACTION_REQUIRED';
+  | 'CREATED'
+  | 'SAVED'
+  | 'APPROVED'
+  | 'VOIDED'
+  | 'COMPLETED'
+  | 'PAYER_ACTION_REQUIRED';

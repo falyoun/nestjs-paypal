@@ -1,6 +1,5 @@
 import { IsOptional, MaxLength, MinLength } from 'class-validator';
 
-
 export class PaypalNameDto {
   // The prefix, or title, to the party's name.
   // Maximum length: 140.
@@ -20,7 +19,6 @@ export class PaypalNameDto {
   @IsOptional()
   suffix?: string;
 
-
   // DEPRECATED. The party's alternate name. Can be a business name, nickname, or any other name that cannot be split into first, last name. Required when the party is a business
   // Maximum length: 300.
   @MaxLength(300)
@@ -31,7 +29,6 @@ export class PaypalNameDto {
   @MaxLength(300)
   @IsOptional()
   full_name?: string;
-
 
   // The full name representation like Mr J Smith.
   @MinLength(3)

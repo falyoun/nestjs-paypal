@@ -1,7 +1,7 @@
 export interface PaypalModuleInterface {
   clientId: string;
   clientSecret: string;
-  environment: "sandbox" | "live";
+  environment: 'sandbox' | 'live';
 }
 
 export interface EnvironmentVariables {
@@ -14,6 +14,6 @@ export default (): EnvironmentVariables => ({
   paypalModuleInterface: {
     clientId: process.env.PAYPAL_CLIENT_ID,
     clientSecret: process.env.PAYPAL_CLIENT_SECRET,
-    environment: process.env.PAYPAL_ENVIRONMENT as ("sandbox" | "live")
-  }
+    environment: process.env.PAYPAL_ENVIRONMENT as 'sandbox' | 'live',
+  },
 });

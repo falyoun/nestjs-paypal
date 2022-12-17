@@ -1,13 +1,10 @@
 import { IsNotEmpty, MaxLength } from 'class-validator';
 
-
 export class PaypalTaxInfoDto {
-
   // The customer's tax ID value.
   @IsNotEmpty()
   @MaxLength(14)
   tax_id: string;
-
 
   // The customer's tax ID type.
   // The possible values are:

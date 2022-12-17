@@ -1,5 +1,8 @@
-import { PaypalPayerDto, PurchaseUnitRequestDto, PaypalApplicationContextDto } from '@app/dtos';
-
+import {
+  PaypalPayerDto,
+  PurchaseUnitRequestDto,
+  PaypalApplicationContextDto,
+} from '@app/dtos';
 
 export class CreatePaypalOrderDto {
   // The intent to either capture payment immediately or authorize a payment for an order after order creation.
@@ -14,7 +17,6 @@ export class CreatePaypalOrderDto {
 
   // The customer who approves and pays for the order. The customer is also known as the payer.
   payer?: PaypalPayerDto;
-
 
   // An array of purchase units. Each purchase unit establishes a contract between a payer and the payee.
   // Each purchase unit represents either a full or partial order that the payer intends to purchase from the payee.

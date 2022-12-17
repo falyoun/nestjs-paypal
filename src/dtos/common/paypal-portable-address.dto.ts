@@ -1,8 +1,6 @@
-import { MaxLength } from "class-validator";
-
+import { MaxLength } from 'class-validator';
 
 export class PaypalPortableAddress {
-
   // The first line of the address. For example, number or street. For example, 173 Drury Lane. Required for data entry and compliance and risk checks. Must contain the full address.
   @MaxLength(300)
   address_line_1: string;
@@ -27,5 +25,4 @@ export class PaypalPortableAddress {
   postal_code: string;
   // The two-character ISO 3166-1 code that identifies the country or region.
   country_code: string;
-
 }

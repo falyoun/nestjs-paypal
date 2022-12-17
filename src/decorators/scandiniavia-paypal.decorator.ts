@@ -1,7 +1,5 @@
-
 import { Inject } from '@nestjs/common';
-import { PAYPAL_PAYMENT_SERVICE_INSTANCE_TOKEN } from "@app/constants";
-
+import { PAYPAL_PAYMENT_SERVICE_INSTANCE_TOKEN } from '@app/constants';
 
 export interface ScandiniaviaPaypalDecorator {
   (

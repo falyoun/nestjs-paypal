@@ -1,5 +1,3 @@
-
-
 export enum PaypalEnrollmentStatusDto {
   // The possible values are:
   //
@@ -10,5 +8,5 @@ export enum PaypalEnrollmentStatusDto {
   'Y',
   'N',
   'U',
-  'B'
+  'B',
 }

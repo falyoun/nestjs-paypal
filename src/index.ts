@@ -4,4 +4,4 @@ export * from './dtos';
 export * from './errors';
 export * from './interfaces';
 export * from './constants';
-export * from './decorators'
+export * from './decorators';

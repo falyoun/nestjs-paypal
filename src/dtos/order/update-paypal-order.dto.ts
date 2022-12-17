@@ -1,11 +1,13 @@
-import { IsArray, IsNotEmpty, IsOptional } from "class-validator";
-import { PaypalOperationDto, PaypalPayerDto, PurchaseUnitRequestDto } from "@app/dtos";
+import { IsArray, IsNotEmpty, IsOptional } from 'class-validator';
+import {
+  PaypalOperationDto,
+  PaypalPayerDto,
+  PurchaseUnitRequestDto,
+} from '@app/dtos';
 
 export class AllowedValueToPatchOrderDto {
-
   @IsOptional()
   intent?: 'CAPTURE' | 'AUTHORIZE';
-
 
   @IsOptional()
   payer?: PaypalPayerDto;
@@ -15,7 +17,6 @@ export class AllowedValueToPatchOrderDto {
   purchase_units?: PurchaseUnitRequestDto[];
 }
 export class UpdatePaypalOrderDto {
-
   @IsNotEmpty()
   op: PaypalOperationDto;
 
@@ -25,8 +26,6 @@ export class UpdatePaypalOrderDto {
   @IsOptional()
   value?: any;
 
-
   @IsOptional()
   from?: string;
-
 }
