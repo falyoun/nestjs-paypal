@@ -1,11 +1,10 @@
-import { Length, Matches } from "class-validator";
+import { Length, Matches } from 'class-validator';
 import {
   CardsTypesEnumDto,
   PaypalAuthenticationResponseDto,
   PaypalBrandsEnumDto,
-  PaypalPortableAddress
-} from "@app/dtos";
-
+  PaypalPortableAddress,
+} from '@app/dtos';
 
 export class CardResponseDto {
   // The card holder's name as it appears on the card.

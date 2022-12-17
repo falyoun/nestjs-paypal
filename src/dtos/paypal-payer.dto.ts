@@ -1,4 +1,8 @@
-import { PaypalNameDto, PaypalPortableAddress, PaypalTaxInfoDto } from '@app/dtos';
+import {
+  PaypalNameDto,
+  PaypalPortableAddress,
+  PaypalTaxInfoDto,
+} from '@app/dtos';
 
 export class PaypalPayerBaseDto {
   // Maximum length: 254.
@@ -13,11 +17,8 @@ export class PaypalPayerBaseDto {
 }
 
 export class PaypalPayerDto extends PaypalPayerBaseDto {
-
-
   // The name of the payer. Supports only the given_name and surname properties.
   name?: PaypalNameDto;
-
 
   // The phone number of the customer. Available only when you enable the Contact Telephone Number option in the Profile & Settings for the merchant's PayPal account. The phone.phone_number supports only national_number.
   phone?: any;

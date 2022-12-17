@@ -1,5 +1,3 @@
-
-
 export enum LiabilityShiftEnumsDto {
   // The possible values are:
   //
@@ -10,5 +8,5 @@ export enum LiabilityShiftEnumsDto {
   'YES',
   'NO',
   'POSSIBLE',
-  'UNKNOWN'
+  'UNKNOWN',
 }

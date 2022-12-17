@@ -1,5 +1,5 @@
-
-
 export enum PaypalStoredPaymentSourcePaymentTypeDto {
-  'ONE_TIME' , 'RECURRING' , 'UNSCHEDULED'
+  'ONE_TIME',
+  'RECURRING',
+  'UNSCHEDULED',
 }

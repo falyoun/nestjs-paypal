@@ -1,5 +1,3 @@
-
-
 export class InitiateTokenResponseDto {
   scope: string;
   access_token: string;

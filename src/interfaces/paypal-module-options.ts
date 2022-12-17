@@ -7,7 +7,9 @@ export type PaypalModuleOptions = {
 };
 
 export interface PaypalModuleOptionsFactory {
-  createPaypalModuleOptions(): Promise<PaypalModuleOptions> | PaypalModuleOptions;
+  createPaypalModuleOptions():
+    | Promise<PaypalModuleOptions>
+    | PaypalModuleOptions;
 }
 
 export interface PaypalModuleAsyncOptions

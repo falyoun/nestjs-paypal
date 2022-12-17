@@ -1,7 +1,7 @@
-import { ConfigModule, ConfigService } from "@nestjs/config";
-import { PaypalPaymentModule } from "@app/paypal-payment.module";
-import { Module } from "@nestjs/common";
-import configurations from "@app/configurations";
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { PaypalPaymentModule } from '@app/paypal-payment.module';
+import { Module } from '@nestjs/common';
+import configurations from '@app/configurations';
 
 @Module({
   imports: [
@@ -13,7 +13,7 @@ import configurations from "@app/configurations";
     PaypalPaymentModule.register({
       clientId: process.env.PAYPAL_CLIENT_ID,
       clientSecret: process.env.PAYPAL_CLIENT_SECRET,
-      environment: process.env.PAYPAL_ENVIRONMENT as ("sandbox" | "live")
+      environment: process.env.PAYPAL_ENVIRONMENT as 'sandbox' | 'live',
     }),
     PaypalPaymentModule.registerAsync({
       inject: [ConfigService],

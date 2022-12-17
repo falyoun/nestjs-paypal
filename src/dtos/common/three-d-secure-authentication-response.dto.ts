@@ -1,6 +1,5 @@
-import { PaypalAuthenticationStatusDto } from "@app/dtos";
-import { PaypalEnrollmentStatusDto } from "@app/dtos/common/paypal-enrollment-status.dto";
-
+import { PaypalAuthenticationStatusDto } from '@app/dtos';
+import { PaypalEnrollmentStatusDto } from '@app/dtos/common/paypal-enrollment-status.dto';
 
 export class ThreeDSecureAuthenticationResponseDto {
   // The outcome of the issuer's authentication.

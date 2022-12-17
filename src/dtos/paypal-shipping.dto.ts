@@ -1,19 +1,15 @@
 import { Length, Matches, MaxLength } from 'class-validator';
-import { PaypalPortableAddress } from "@app/dtos/common";
-
+import { PaypalPortableAddress } from '@app/dtos/common';
 
 export class PaypalShippingName {
   // When the party is a person, the party's full name.
   full_name: string;
 }
 
-
 export class PaypalShippingDto {
-
   // The name of the person to whom to ship the items. Supports only the full_name property.
   @MaxLength(300)
   name: PaypalShippingName;
-
 
   // The method by which the payer wants to get their items from the payee e.g shipping, in-person pickup. Either type or options but not both may be present.
   // The possible values are:

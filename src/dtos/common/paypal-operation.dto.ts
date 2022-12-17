@@ -1,7 +1,4 @@
-
-
 export type PaypalOperationDto =
-
   // add. Depending on the target location reference, completes one of these functions:
   // The target location is an array index. Inserts a new value into the array at the specified index.
   // The target location is an object parameter that does not already exist. Adds a new parameter to the object.
@@ -18,9 +15,4 @@ export type PaypalOperationDto =
   //  - objects -> Contain the same number of parameters, and each parameter is equal to a parameter in the other object, by comparing their keys (as strings) and their values (by using these type-specific rules).
   //  - literals (false, true, and null) -> Are the same. The comparison is a logical comparison. For example, whitespace between the parameter values of an array is not significant. Also, ordering of the serialization of object parameters is not significant.
 
-  'add'|
-  'remove'|
-  'replace'|
-  'move'|
-  'copy'|
-  'test';
+  'add' | 'remove' | 'replace' | 'move' | 'copy' | 'test';

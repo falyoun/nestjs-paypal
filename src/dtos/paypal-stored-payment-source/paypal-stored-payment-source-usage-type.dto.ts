@@ -1,3 +1,5 @@
 export enum PaypalStoredPaymentSourceUsageTypeDto {
-  'FIRST', 'SUBSEQUENT', 'DERIVED'
+  'FIRST',
+  'SUBSEQUENT',
+  'DERIVED',
 }
