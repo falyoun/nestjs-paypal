@@ -49,13 +49,19 @@ export class PaypalPaymentService {
     headers?: InitiateOrderHeadersDto,
   ): Promise<PaypalOrderDto> {
     const _headers = await this._preparePaypalRequestHeaders(headers);
+
+    console.log(_headers);
+
     const apiUrl = this.paypalUtilsService.getApiUrl(this.options.environment);
+    console.log(apiUrl);
+
     return this.axiosInstance
       .post(`${apiUrl}/v2/checkout/orders`, orderPayload, {
         headers: _headers,
       })
       .then((r) => r.data)
       .catch((e) => {
+        console.log(e);
         throw {
           ...PaypalErrorsConstants.INITIATE_ORDER_FAILED,
           nativeError: e?.response?.data || e,
