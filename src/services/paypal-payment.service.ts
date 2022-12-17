@@ -56,6 +56,7 @@ export class PaypalPaymentService {
       })
       .then((r) => r.data)
       .catch((e) => {
+        console.log(e);
         throw {
           ...PaypalErrorsConstants.INITIATE_ORDER_FAILED,
           nativeError: e?.response?.data || e,
