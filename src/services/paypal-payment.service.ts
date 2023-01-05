@@ -50,6 +50,7 @@ export class PaypalPaymentService {
   ): Promise<PaypalOrderDto> {
     const _headers = await this._preparePaypalRequestHeaders(headers);
     const apiUrl = this.paypalUtilsService.getApiUrl(this.options.environment);
+
     return this.axiosInstance
       .post(`${apiUrl}/v2/checkout/orders`, orderPayload, {
         headers: _headers,

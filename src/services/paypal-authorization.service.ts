@@ -23,11 +23,14 @@ export class PaypalAuthorizationService {
       this.options.clientId + ':' + this.options.clientSecret,
     ).toString('base64');
   }
-  getAccessToken(): Promise<InitiateTokenResponseDto> {
-    const url = 'https://api-m.sandbox.paypal.com/v1/oauth2/token';
+  async getAccessToken(): Promise<InitiateTokenResponseDto> {
+    const apiUrl = this.getApiUrl(this.options.environment);
+    const url = `${apiUrl}/v1/oauth2/token`;
     const basicKey = this.getBasicKey();
     const data = new URLSearchParams();
+
     data.append('grant_type', 'client_credentials');
+
     return this.axiosInstance
       .post(url, data, {
         headers: {
@@ -42,5 +45,11 @@ export class PaypalAuthorizationService {
           nativeError: e?.response?.data || e,
         };
       });
+  }
+
+  getApiUrl(environment: 'live' | 'sandbox') {
+    return environment === 'sandbox'
+      ? 'https://api-m.sandbox.paypal.com'
+      : 'https://api-m.paypal.com';
   }
 }
